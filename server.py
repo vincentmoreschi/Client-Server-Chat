@@ -47,11 +47,12 @@ class Server:
                     break
                 # add to the response
                 response = response + packet
+                response = response[1:]
                 if(response.decode() == "/q"):
                     conn.close()
                     break
                 if(response):
-                    response = response[1:]
+                    
                     print(response.decode())
                     msg = input(">")
                     conn.send(str.encode(f'{len(msg)}{msg}'))

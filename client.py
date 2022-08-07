@@ -29,7 +29,9 @@ class Client:
         msglen = int(chunk.decode()[0])
         # delete size
         chunk = chunk[1:]
+        # add chunk to list
         chunks.append(chunk)
+        # read bytes unitl it matches the size gotten from the message
         bytes_recd = bytes_recd + len(chunk)
         while bytes_recd < msglen:
             chunk = self.sock.recv(min(msglen - bytes_recd, 1024))
